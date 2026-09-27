@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>음식물의 소화 여행</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <h1>🍙 음식물의 소화 여행</h1>
+  <p>입에서 출발해 식도·위·소장·대장을 지나 항문까지! 기관마다 문제를 풀면 소화가 일어나고 다음 기관으로 넘어가요.</p>
+</header>
+
+<main class="layout">
+  <section class="map-wrap">
+    <svg id="map" viewBox="0 0 1000 760" role="img" aria-label="사람의 소화 기관 지도"></svg>
+  </section>
+
+  <aside class="panel">
+    <div class="card now">
+      <div class="label">지금 있는 곳</div>
+      <div id="place" class="place">입</div>
+      <div id="placeInfo" class="info"></div>
+    </div>
+
+    <div class="card">
+      <div class="label">음식물 속 영양소는 지금…</div>
+      <table class="nutri">
+        <tbody id="nutri"></tbody>
+      </table>
+    </div>
+
+    <button id="goBtn" class="go">❓ 관문 문제 풀기</button>
+
+    <div class="card">
+      <div class="label">소화 기관 경로</div>
+      <ol id="route" class="route"></ol>
+    </div>
+
+    <div class="card stat">
+      <span>⏱ <b id="time">0:00</b></span>
+      <span>✔ 맞힘 <b id="right">0</b></span>
+      <span>✖ 틀림 <b id="wrong">0</b></span>
+    </div>
+  </aside>
+</main>
+
+<!-- 시작 화면 -->
+<div id="startBox" class="overlay show">
+  <div class="dialog">
+    <h2>음식물의 소화 여행</h2>
+    <p>나는 방금 <b>입</b>에 들어온 음식물이에요. 녹말·단백질·지방이 들어 있어요.<br>
+       관문 6개를 통과하며 소화되어 <b>항문</b>까지 가 보세요.</p>
+    <ul class="howto">
+      <li>지도 위의 <span class="q-dot">?</span> 표지판이나 <b>관문 문제 풀기</b> 버튼을 누르면 지금 있는 기관에 대한 문제가 나와요.</li>
+      <li>맞히면 그 기관에서 소화가 일어나고 다음 기관으로 이동해요.</li>
+      <li>틀리면 해설을 읽고, 같은 관문의 다른 문제에 도전해요.</li>
+      <li>오른쪽 <b>영양소 표</b>에서 녹말·단백질·지방이 어떻게 바뀌는지 잘 보세요!</li>
+    </ul>
+    <label class="name">이름(또는 모둠) <input id="nameIn" maxlength="20" placeholder="예) 2모둠 / 김과학"></label>
+    <button id="startBtn" class="primary">출발하기 🚀</button>
+  </div>
+</div>
+
+<!-- 문제 창 -->
+<div id="quizBox" class="overlay">
+  <div class="dialog quiz">
+    <div id="qGate" class="gate-name"></div>
+    <div id="qText" class="q-text"></div>
+    <div id="qChoices" class="choices"></div>
+    <div id="qResult" class="result"></div>
+    <div class="quiz-btns">
+      <button id="qNext" class="primary"></button>
+      <button id="qClose" class="ghost">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 완주 화면 -->
+<div id="endBox" class="overlay">
+  <div class="dialog end">
+    <h2>🎉 소화 여행 완주!</h2>
+    <div id="endName" class="end-name"></div>
+    <div class="end-stats">
+      <div><span>걸린 시간</span><b id="endTime"></b></div>
+      <div><span>맞힌 문제</span><b id="endRight"></b></div>
+      <div><span>틀린 횟수</span><b id="endWrong"></b></div>
+    </div>
+    <table class="sum-table">
+      <tr><th>영양소</th><th>입</th><th>위</th><th>소장</th><th>최종 산물 → 흡수</th></tr>
+      <tr><td>녹말</td><td>아밀레이스(침)</td><td>-</td><td>아밀레이스(이자액)<br>소장의 소화 효소</td><td>포도당 → 모세혈관</td></tr>
+      <tr><td>단백질</td><td>-</td><td>펩신(위액)</td><td>트립신(이자액)<br>소장의 소화 효소</td><td>아미노산 → 모세혈관</td></tr>
+      <tr><td>지방</td><td>-</td><td>-</td><td>쓸개즙(작은 알갱이로)<br>라이페이스(이자액)</td><td>지방산·모노글리세리드 → 암죽관</td></tr>
+    </table>
+    <p class="sum-note">남은 찌꺼기는 대장에서 물이 흡수된 뒤 대변이 되어 항문으로 나가요.</p>
+    <button id="againBtn" class="primary">처음부터 다시 (문제 새로 섞기)</button>
+  </div>
+</div>
+
+<script src="js/questions.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
